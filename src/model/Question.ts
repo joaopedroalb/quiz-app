@@ -1,14 +1,15 @@
+import AnswerModel from "./Answer";
+
 export default class QuestionModel{
     #id: number
     #header: string
-    #answer: any[]
+    #answers: AnswerModel[]
     #isCorrect: boolean
-    //#isAnswered:boolean
 
-    constructor (id:number,header:string,answer:any[],isCorrect:boolean){
+    constructor (id:number,header:string,answers:AnswerModel[],isCorrect:boolean){
         this.#id = id;
         this.#header = header;
-        this.#answer = answer;
+        this.#answers = answers;
         this.#isCorrect = isCorrect;
     }
 
@@ -20,16 +21,19 @@ export default class QuestionModel{
         return this.#header
     }
 
-    get answer():any[]{
-        return this.#answer
+    get answer():AnswerModel[]{
+        return this.#answers
     }
 
     get isCorrect():boolean{
         return this.#isCorrect
     }
 
-    // get isAnswered():boolean{
-    //     return.this.#isAnswered;
-    // }
+    get isAnswered():boolean{
+        if(this.#answers.length==0)
+            return false
+        else
+            return this.#answers.filter(x=>x.isCorrect).length>0
+    }
 
 }
