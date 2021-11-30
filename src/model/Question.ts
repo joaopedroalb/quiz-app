@@ -6,11 +6,11 @@ export default class QuestionModel{
     #answers: AnswerModel[]
     #isCorrect: boolean
 
-    constructor (id:number,header:string,answers:AnswerModel[],isCorrect:boolean){
+    constructor (id:number,header:string,answers:AnswerModel[]){
         this.#id = id;
         this.#header = header;
         this.#answers = answers;
-        this.#isCorrect = isCorrect;
+        this.#isCorrect = false;
     }
 
     get id():number{
@@ -34,6 +34,15 @@ export default class QuestionModel{
             return false
         else
             return this.#answers.filter(x=>x.isCorrect).length>0
+    }
+
+    toObject(){
+        return{
+            id: this.#id,
+            header: this.#header,
+            answer: this.#answers.map(resp=>resp.toObject()),
+            isCorrect:this.#isCorrect
+        }
     }
 
 }

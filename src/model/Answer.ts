@@ -9,6 +9,14 @@ export default class AnswerModel{
         this.#show=false
     }
 
+    static correctAnswer(value:string){
+        return new AnswerModel(value,true)
+    }
+
+    static wrongAnswer(value:string){
+        return new AnswerModel(value,false)
+    }
+
     get value():string{
         return this.#value
     }
@@ -24,5 +32,13 @@ export default class AnswerModel{
     showAnswer(){
         this.#show = true;
         return this.#value;
+    }
+
+    toObject(){
+        return{
+            value: this.#value,
+            isCorrect: this.#isCorrect,
+            show: this.#show
+        }
     }
 }
