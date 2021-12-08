@@ -1,4 +1,5 @@
 import QuestionModel from "../../model/Question";
+import Answer from "../Answer";
 import Header from "../Header";
 import styles from './index.module.css'
 
@@ -8,16 +9,16 @@ interface QuestionProps{
 
 export default function Question(props:QuestionProps){
     const question = props.value
+
+    function renderAnswers(){
+        return question.answer.map((a,i)=>{
+            return <Answer key={i} answer={a} index={i} letter={`${i+1}.`} colorLetter={"#F2C866"}/>
+        })
+    }
     return(
         <div className={styles.questionContainer}>
             <Header text={question.header}/>
-            {props.value.answer.map((a,i)=>{
-                return(
-                    <h4 key={i}>
-                        {a.value}
-                    </h4>
-                )
-            })}
+            {renderAnswers()}
         </div>
     )
 }

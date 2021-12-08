@@ -1,0 +1,8 @@
+.answerContainer{
+    cursor: pointer;
+    display: flex;
+}
+.front, .back{
+    display: flex;
+    gap: .25rem;
+}
