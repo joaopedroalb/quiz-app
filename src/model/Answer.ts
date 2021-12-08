@@ -3,7 +3,7 @@ export default class AnswerModel{
     #isCorrect: boolean
     #show: boolean
 
-    constructor(value:string,isCorrect:boolean){
+    constructor(value:string,isCorrect:boolean,show?:boolean){
         this.#value = value
         this.#isCorrect=isCorrect
         this.#show=false
@@ -27,6 +27,10 @@ export default class AnswerModel{
 
     get show():boolean{
         return this.#show
+    }
+
+    reveal(){
+        return new AnswerModel(this.#value,this.#isCorrect,true);
     }
 
     showAnswer(){

@@ -34,7 +34,16 @@ export default class QuestionModel{
         if(this.#answers.length==0)
             return false
         else
-            return this.#answers.filter(x=>x.isCorrect).length>0
+            return this.#answers.filter(x=>x.show).length>0
+    }
+
+    answeredBy(index:number):QuestionModel{
+        const correct = this.#answers[index]?.isCorrect
+        const answers = this.#answers.map((answer,i)=>{
+            const answersSelected = index === i;
+            return (answersSelected || answer.isCorrect) ? answer.reveal():answer
+        })
+        return new QuestionModel(this.#id,this.#header,answers,correct)
     }
 
     shuffleAnswers():QuestionModel{
@@ -47,7 +56,8 @@ export default class QuestionModel{
             id: this.#id,
             header: this.#header,
             answer: this.#answers.map(resp=>resp.toObject()),
-            isCorrect:this.#isCorrect
+            isCorrect:this.#isCorrect,
+            answered:this.isAnswered
         }
     }
 
