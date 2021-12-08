@@ -1,3 +1,4 @@
+import { shuffle } from "../functions/arrays";
 import AnswerModel from "./Answer";
 
 export default class QuestionModel{
@@ -6,7 +7,7 @@ export default class QuestionModel{
     #answers: AnswerModel[]
     #isCorrect: boolean
 
-    constructor (id:number,header:string,answers:AnswerModel[]){
+    constructor (id:number,header:string,answers:AnswerModel[], isCorrect?:boolean){
         this.#id = id;
         this.#header = header;
         this.#answers = answers;
@@ -34,6 +35,11 @@ export default class QuestionModel{
             return false
         else
             return this.#answers.filter(x=>x.isCorrect).length>0
+    }
+
+    shuffleAnswers():QuestionModel{
+        let answersShuffle = shuffle(this.#answers);
+        return new QuestionModel(this.#id,this.#header,answersShuffle,this.#isCorrect)
     }
 
     toObject(){

@@ -7,7 +7,7 @@ import questoes from '../dataBaseQuestion'
 export default function handler(req: NextApiRequest,res: NextApiResponse<any>){
   const idReq = +req.query.id
 
-  const myQuestion = questoes.filter(x=>x.id==idReq)[0]
+  const myQuestion = questoes.filter(x=>x.id==idReq)[0].shuffleAnswers()
 
   if(myQuestion != null){
     const obj = myQuestion.toObject()
