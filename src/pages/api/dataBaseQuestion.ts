@@ -14,6 +14,12 @@ const questions: QuestionModel[] =[
         AnswerModel.wrongAnswer("Felipe Melo"),
         AnswerModel.correctAnswer("Deyverson")
     ]),
+    new QuestionModel(101,"Qual desses clubes o Garricha NUNCA jogou?",[
+        AnswerModel.wrongAnswer("Fortaleza"),
+        AnswerModel.wrongAnswer("Botafogo"),
+        AnswerModel.wrongAnswer("Novo Hamburgo"),
+        AnswerModel.correctAnswer("Ypiranga")
+    ]),
 ]
 
 export default questions
