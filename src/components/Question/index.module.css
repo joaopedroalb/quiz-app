@@ -1,0 +1,8 @@
+.questionContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.questionContainer h4{
+    margin: 0;
+}
