@@ -1,11 +1,13 @@
 import QuestionModel from "../../model/Question";
 import Answer from "../Answer";
 import Header from "../Header";
+import Timer from "../Timer";
 import styles from './index.module.css'
 
 interface QuestionProps{
     value: QuestionModel
     onResponse:(index:number)=>void
+    timeOver:()=>void
 }
 
 const letters = [
@@ -32,6 +34,7 @@ export default function Question(props:QuestionProps){
     return(
         <div className={styles.questionContainer}>
             <Header text={question.header}/>
+            <Timer duration={30} timeOver={props.timeOver}/>
             {renderAnswers()}
         </div>
     )

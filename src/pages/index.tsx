@@ -23,9 +23,15 @@ const Home: NextPage = () => {
     setQuestion(question.answeredBy(index));
   }
 
+  function timeOver(){
+    if(!question.isAnswered){
+      setQuestion(question.answeredBy(-1))
+    }
+  }
+
   return (
     <div className={styles.container}>
-     <Question value={question} onResponse={onResponse}/>
+     <Question value={question} onResponse={onResponse} timeOver={timeOver}/>
     </div>
   )
 }
