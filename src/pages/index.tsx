@@ -10,6 +10,8 @@ const Home: NextPage = () => {
     "Isso é um teste?",
     [
       AnswerModel.correctAnswer("Sim ?"),
+      AnswerModel.wrongAnswer("Talvez ?"),
+      AnswerModel.wrongAnswer("Espero que seja"),
       AnswerModel.wrongAnswer("Nao ?")
     ]
   )
