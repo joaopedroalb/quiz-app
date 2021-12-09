@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Question from '../components/Question'
 import AnswerModel from '../model/Answer'
 import QuestionModel from '../model/Question'
@@ -18,14 +18,19 @@ const questionMock = new QuestionModel(
 
 const Home: NextPage = () => {
   const [question,setQuestion] = useState(questionMock)
+  const questionRef = useRef<QuestionModel>(questionMock);
+
+  useEffect(()=>{
+    questionRef.current = question
+  },[question])
 
   function onResponse(index:number){
     setQuestion(question.answeredBy(index));
   }
 
   function timeOver(){
-    if(!question.isAnswered){
-      setQuestion(question.answeredBy(-1))
+    if(!questionRef.current.isAnswered){
+      setQuestion(questionRef.current.answeredBy(-1))
     }
   }
 

@@ -33,8 +33,8 @@ export default function Question(props:QuestionProps){
     }
     return(
         <div className={styles.questionContainer}>
+            <Timer duration={25} timeOver={props.timeOver}/>
             <Header text={question.header}/>
-            <Timer duration={30} timeOver={props.timeOver}/>
             {renderAnswers()}
         </div>
     )
