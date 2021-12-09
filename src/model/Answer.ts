@@ -3,10 +3,10 @@ export default class AnswerModel{
     #isCorrect: boolean
     #show: boolean
 
-    constructor(value:string,isCorrect:boolean,show?:boolean){
+    constructor(value:string,isCorrect:boolean,show=false){
         this.#value = value
         this.#isCorrect=isCorrect
-        this.#show=false
+        this.#show=show
     }
 
     static correctAnswer(value:string){

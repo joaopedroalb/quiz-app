@@ -26,6 +26,24 @@
     border-radius: 12px;
     gap: 20px;
 }
+.back > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    border-radius: 12px;
+}
+
+.correct{
+    background-color: #2BAA6D;
+}
+.wrong{
+    background-color: #E44A4C;
+}
+.correct .value, .wrong .value{
+    font-size: 1.5rem;
+}
 .letter{
     height: 40px;
     width: 40px;

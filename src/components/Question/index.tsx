@@ -5,6 +5,7 @@ import styles from './index.module.css'
 
 interface QuestionProps{
     value: QuestionModel
+    onResponse:(index:number)=>void
 }
 
 const letters = [
@@ -19,7 +20,13 @@ export default function Question(props:QuestionProps){
 
     function renderAnswers(){
         return question.answer.map((a,i)=>{
-            return <Answer key={i} answer={a} index={i} letter={letters[i].value} bgColor={letters[i].color}/>
+            return <Answer 
+                    key={i} 
+                    answer={a} 
+                    index={i} 
+                    letter={letters[i].value} 
+                    bgColor={letters[i].color}
+                    onResponse={props.onResponse} />
         })
     }
     return(
