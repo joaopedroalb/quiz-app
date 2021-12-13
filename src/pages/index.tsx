@@ -5,6 +5,7 @@ import AnswerModel from '../model/Answer'
 import QuestionModel from '../model/Question'
 import MyButton from '../components/MyButton'
 import styles from '../styles/Home.module.css'
+import Quiz from '../components/Quiz'
 
 const questionMock = new QuestionModel(
   1,
@@ -17,29 +18,49 @@ const questionMock = new QuestionModel(
   ]
 )
 
+const BASE_URL = "/api"
+
 const Home: NextPage = () => {
   const [question,setQuestion] = useState(questionMock)
-  const questionRef = useRef<QuestionModel>(questionMock);
+  const [idList,setIdList] = useState<number[]>([])
 
-  useEffect(()=>{
-    questionRef.current = question
-  },[question])
-
-  function onResponse(index:number){
-    setQuestion(question.answeredBy(index));
+  async function loadIdsQuestion(){
+    const resp = await fetch(`${BASE_URL}/quiz`)
+    const ids = await resp.json()
+    console.log(ids)
+    setIdList(ids)
   }
 
-  function timeOver(){
-    if(!questionRef.current.isAnswered){
-      setQuestion(questionRef.current.answeredBy(-1))
-    }
+  async function loadQuestion(id:number){
+    const resp = await fetch(`${BASE_URL}/questions/${id}`)
+    const questionJson = await resp.json();
+    console.log(questionJson)
+
+  }
+
+  useEffect(()=>{
+    loadIdsQuestion();
+  },[])
+
+  useEffect(()=>{
+    idList.length > 0 && loadQuestion(idList[0])
+      
+  },[idList])
+  
+  function answeredQuestion(question:QuestionModel){
+
+  }
+  function nextStep(){
+
   }
 
   return (
-    <div className={styles.container}>
-      <Question value={question} onResponse={onResponse} timeOver={timeOver}/>
-      <MyButton text="Próxima" url="/resultado"/>
-    </div>
+      <Quiz 
+        question={question}
+        last={true}
+        answeredQuestion={answeredQuestion}
+        nextStep={nextStep}
+      />
   )
 }
 
