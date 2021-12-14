@@ -34,7 +34,8 @@ const Home: NextPage = () => {
   async function loadQuestion(id:number){
     const resp = await fetch(`${BASE_URL}/questions/${id}`)
     const questionJson = await resp.json();
-    console.log(questionJson)
+    const newQuestion = QuestionModel.createByObject(questionJson);
+    setQuestion(newQuestion)
 
   }
 

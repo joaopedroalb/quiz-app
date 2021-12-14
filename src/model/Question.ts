@@ -22,7 +22,7 @@ export default class QuestionModel{
         return this.#header
     }
 
-    get answer():AnswerModel[]{
+    get answers():AnswerModel[]{
         return this.#answers
     }
 
@@ -55,10 +55,15 @@ export default class QuestionModel{
         return{
             id: this.#id,
             header: this.#header,
-            answer: this.#answers.map(resp=>resp.toObject()),
+            answers: this.#answers.map(resp=>resp.toObject()),
             isCorrect:this.#isCorrect,
             answered:this.isAnswered
         }
+    }
+
+    static createByObject(obj:QuestionModel):QuestionModel{
+        const answers = obj.answers.map(a=>AnswerModel.createByObject(a))
+        return new QuestionModel(obj.id,obj.header,answers,obj.isCorrect)
     }
 
 }

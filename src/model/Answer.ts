@@ -45,4 +45,8 @@ export default class AnswerModel{
             show: this.#show
         }
     }
+
+    static createByObject(obj:AnswerModel):AnswerModel{
+        return new AnswerModel(obj.value,obj.isCorrect,obj.show)
+    }
 }

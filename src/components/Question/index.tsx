@@ -21,7 +21,7 @@ export default function Question(props:QuestionProps){
     const question = props.value
 
     function renderAnswers(){
-        return question.answer.map((a,i)=>{
+        return question.answers.map((a,i)=>{
             return <Answer 
                     key={i} 
                     answer={a} 
