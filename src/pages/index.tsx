@@ -1,9 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef, useState } from 'react'
-import Question from '../components/Question'
 import AnswerModel from '../model/Answer'
 import QuestionModel from '../model/Question'
-import MyButton from '../components/MyButton'
 import styles from '../styles/Home.module.css'
 import Quiz from '../components/Quiz'
 
@@ -21,7 +19,8 @@ const questionMock = new QuestionModel(
 const BASE_URL = "/api"
 
 const Home: NextPage = () => {
-  const [question,setQuestion] = useState(questionMock)
+  const [question,setQuestion] = useState<QuestionModel>(questionMock)
+  const [correctQuestions,setCorrectQuestions] = useState<number>(0)
   const [idList,setIdList] = useState<number[]>([])
 
   async function loadIdsQuestion(){
@@ -48,10 +47,27 @@ const Home: NextPage = () => {
       
   },[idList])
   
-  function answeredQuestion(question:QuestionModel){
-
+  function answeredQuestion(questionAnswered:QuestionModel){
+    setQuestion(questionAnswered)
+    const correct = questionAnswered.isCorrect
+    setCorrectQuestions(correctQuestions+(correct?1:0));
   }
+
+  function idNextQuestion(){
+    const nextIndex = idList.indexOf(question.id)+1;
+    return idList[nextIndex]
+  }
+
   function nextStep(){
+    const nextId = idNextQuestion();
+    nextId ? goToNextQuestion(nextId):finishQuiz()
+  }
+
+  function goToNextQuestion(index:number){
+    loadQuestion(index)
+  }
+
+  function finishQuiz(){
 
   }
 

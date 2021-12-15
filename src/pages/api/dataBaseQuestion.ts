@@ -23,7 +23,7 @@ const questions: QuestionModel[] =[
     new QuestionModel(4,"Qual desses clubes o jogador Wellington Paulista NUNCA jogou?",[
         AnswerModel.wrongAnswer("Fortaleza"),
         AnswerModel.wrongAnswer("West Ham"),
-        AnswerModel.wrongAnswer("SantoS"),
+        AnswerModel.wrongAnswer("Santos"),
         AnswerModel.correctAnswer("Benfica")
     ]),
 ]
