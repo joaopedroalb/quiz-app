@@ -38,7 +38,6 @@ const Home: NextPage = () => {
   },[idList])
   
   function answeredQuestion(questionAnswered:QuestionModel){
-    console.log(questionAnswered)
     setQuestion(questionAnswered)
     const correct = questionAnswered.isCorrect
     setCorrectQuestions(correctQuestions+(correct?1:0));
@@ -54,7 +53,6 @@ const Home: NextPage = () => {
 
   function nextStep(){
     const nextId = idNextQuestion();
-    console.log(correctQuestions)
     nextId ? goToNextQuestion(nextId):finishQuiz()
   }
 
