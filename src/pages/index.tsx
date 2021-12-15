@@ -4,11 +4,14 @@ import AnswerModel from '../model/Answer'
 import QuestionModel from '../model/Question'
 import styles from '../styles/Home.module.css'
 import Quiz from '../components/Quiz'
+import { useRouter } from 'next/router' 
 
 
 const BASE_URL = "/api"
 
 const Home: NextPage = () => {
+  const router = useRouter()
+
   const [question,setQuestion] = useState<QuestionModel>()
   const [correctQuestions,setCorrectQuestions] = useState<number>(0)
   const [idList,setIdList] = useState<number[]>([])
@@ -44,11 +47,13 @@ const Home: NextPage = () => {
   }
 
   function idNextQuestion(){
-    if(question===undefined)
+    if(question){
+      const nextIndex = idList.indexOf(question.id)+1;
+      return idList[nextIndex]
+    }
       return undefined
 
-    const nextIndex = idList.indexOf(question.id)+1;
-    return idList[nextIndex]
+    
   }
 
   function nextStep(){
@@ -61,7 +66,13 @@ const Home: NextPage = () => {
   }
 
   function finishQuiz(){
-
+    router.push({
+      pathname:"/result",
+      query:{
+        total:idList.length,
+        corrects: correctQuestions
+      }
+    })
   }
 
   return (
