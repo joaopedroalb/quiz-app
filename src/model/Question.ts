@@ -7,11 +7,11 @@ export default class QuestionModel{
     #answers: AnswerModel[]
     #isCorrect: boolean
 
-    constructor (id:number,header:string,answers:AnswerModel[], isCorrect?:boolean){
+    constructor (id:number,header:string,answers:AnswerModel[], isCorrect=false){
         this.#id = id;
         this.#header = header;
         this.#answers = answers;
-        this.#isCorrect = false;
+        this.#isCorrect = isCorrect;
     }
 
     get id():number{

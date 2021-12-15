@@ -5,21 +5,11 @@ import QuestionModel from '../model/Question'
 import styles from '../styles/Home.module.css'
 import Quiz from '../components/Quiz'
 
-const questionMock = new QuestionModel(
-  1,
-  "Isso é um teste?",
-  [
-    AnswerModel.correctAnswer("Sim ?"),
-    AnswerModel.wrongAnswer("Talvez ?"),
-    AnswerModel.wrongAnswer("Espero que seja"),
-    AnswerModel.wrongAnswer("Nao ?")
-  ]
-)
 
 const BASE_URL = "/api"
 
 const Home: NextPage = () => {
-  const [question,setQuestion] = useState<QuestionModel>(questionMock)
+  const [question,setQuestion] = useState<QuestionModel>()
   const [correctQuestions,setCorrectQuestions] = useState<number>(0)
   const [idList,setIdList] = useState<number[]>([])
 
@@ -48,18 +38,23 @@ const Home: NextPage = () => {
   },[idList])
   
   function answeredQuestion(questionAnswered:QuestionModel){
+    console.log(questionAnswered)
     setQuestion(questionAnswered)
     const correct = questionAnswered.isCorrect
     setCorrectQuestions(correctQuestions+(correct?1:0));
   }
 
   function idNextQuestion(){
+    if(question===undefined)
+      return undefined
+
     const nextIndex = idList.indexOf(question.id)+1;
     return idList[nextIndex]
   }
 
   function nextStep(){
     const nextId = idNextQuestion();
+    console.log(correctQuestions)
     nextId ? goToNextQuestion(nextId):finishQuiz()
   }
 
@@ -72,12 +67,16 @@ const Home: NextPage = () => {
   }
 
   return (
-      <Quiz 
-        question={question}
-        last={true}
-        answeredQuestion={answeredQuestion}
-        nextStep={nextStep}
-      />
+      <div>
+        {question?
+          <Quiz 
+          question={question}
+          last={idNextQuestion() === undefined}
+          answeredQuestion={answeredQuestion}
+          nextStep={nextStep}
+          />:false
+        }
+      </div>
   )
 }
 
