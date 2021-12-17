@@ -47,13 +47,11 @@ const Home: NextPage = () => {
   }
 
   function idNextQuestion(){
-    if(question){
-      const nextIndex = idList.indexOf(question.id)+1;
-      return idList[nextIndex]
-    }
+    if(question===undefined)
       return undefined
 
-    
+    const nextIndex = idList.indexOf(question.id)+1;
+    return idList[nextIndex]
   }
 
   function nextStep(){
@@ -75,18 +73,14 @@ const Home: NextPage = () => {
     })
   }
 
-  return (
-      <div>
-        {question?
-          <Quiz 
-          question={question}
-          last={idNextQuestion() === undefined}
-          answeredQuestion={answeredQuestion}
-          nextStep={nextStep}
-          />:false
-        }
-      </div>
-  )
+  return question ?(
+    <Quiz 
+    question={question}
+    last={idNextQuestion() === undefined}
+    answeredQuestion={answeredQuestion}
+    nextStep={nextStep}
+    />
+  ):(<div></div>)
 }
 
 export default Home

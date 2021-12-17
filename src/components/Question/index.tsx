@@ -23,7 +23,7 @@ export default function Question(props:QuestionProps){
     function renderAnswers(){
         return question.answers.map((a,i)=>{
             return <Answer 
-                    key={i} 
+                    key={`${question.id}-${i}`} 
                     answer={a} 
                     index={i} 
                     letter={letters[i].value} 
@@ -33,7 +33,7 @@ export default function Question(props:QuestionProps){
     }
     return(
         <div className={styles.questionContainer}>
-            <Timer duration={10} timeOver={props.timeOver}/>
+            <Timer duration={5} timeOver={props.timeOver} key={question.id}/>
             <Header text={question.header}/>
             {renderAnswers()}
         </div>
