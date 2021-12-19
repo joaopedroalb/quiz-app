@@ -16,7 +16,7 @@ const questions: QuestionModel[] =[
     ]),
     new QuestionModel(3,"Qual desses clubes o jogador Garricha NUNCA jogou?",[
         AnswerModel.wrongAnswer("Fortaleza"),
-        AnswerModel.wrongAnswer("Botafogo"),
+        AnswerModel.wrongAnswer("Olaria"),
         AnswerModel.wrongAnswer("Novo Hamburgo"),
         AnswerModel.correctAnswer("Ypiranga")
     ]),
