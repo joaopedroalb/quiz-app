@@ -10,6 +10,21 @@ export default function Result(){
     const corrects = router.query.corrects != undefined ? +router.query.corrects:0
     const percentual = Math.round((corrects/total)*100)
 
+    const text = () =>{
+        if(percentual >90)
+            return "TU É O DEUS DO FUTEBOL"
+        if(percentual>=70)
+            return "Parabens você sabe de futebol"
+        if(percentual >= 50)
+            return "Não é ignorante no assunto"
+        if(percentual > 20)
+            return "Ta mal das pernas, tem que estudar"
+        if(percentual > 0)
+            return "SEU HORRIVEL"
+        
+        return "kkkkkkkkkkkkkkk Parabéns irmão o que Íbis joga de bola você conhece de futebol"
+    }
+
     return(
         <div className={styles.container}>
             <h1>Resultado Final</h1>
@@ -18,6 +33,7 @@ export default function Result(){
                 <Statistic text="Corretas" value={corrects} />
                 <Statistic  text="Porcentagem" value={`${percentual}%`}/>
             </div>
+            <h1>{text()}</h1>
             <MyButton url="/" text="Jogar Novamente"/>
         </div>
     )
