@@ -26,6 +26,18 @@ const questions: QuestionModel[] =[
         AnswerModel.wrongAnswer("Santos"),
         AnswerModel.correctAnswer("Benfica")
     ]),
+    new QuestionModel(5,"Qual o grande ídolo do Lionel Messi ?",[
+        AnswerModel.wrongAnswer("Diego Maradona"),
+        AnswerModel.wrongAnswer("Pelé"),
+        AnswerModel.wrongAnswer("Javier Saviola"),
+        AnswerModel.correctAnswer("Pablo Aimar")
+    ]),
+    new QuestionModel(6,"Quantos gols o ex-jogador Rogério Ceni marcou em sua carreira ?",[
+        AnswerModel.wrongAnswer("142"),
+        AnswerModel.wrongAnswer("126"),
+        AnswerModel.wrongAnswer("135"),
+        AnswerModel.correctAnswer("131")
+    ]),
 ]
 
 export default questions
