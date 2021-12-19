@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import MyButton from "../components/MyButton"
+import Roubo from "../components/Roubo"
 import Statistic from "../components/Statistic"
 import styles from '../styles/Result.module.css'
 
@@ -25,7 +26,12 @@ export default function Result(){
         return "kkkkkkkkkkkkkkk Parabéns irmão o que Íbis joga de bola você conhece de futebol"
     }
 
-    return(
+    return percentual>100?(
+        <div className={styles.containerRoubo}>
+            <Roubo/>
+            <MyButton url="/" text="Tente mais uma vez só que com a dignidade de não mudar a url, obrigado"/>
+        </div>
+    ):(
         <div className={styles.container}>
             <h1>Resultado Final</h1>
             <div className={styles.containerStatics}>

@@ -1,8 +1,13 @@
-.container{
+.container,.containerRoubo{
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     flex-direction: column;
+}
+
+.containerRoubo{
+    gap: 10px;
+    padding: 20px;
 }
 
 .containerStatics{
