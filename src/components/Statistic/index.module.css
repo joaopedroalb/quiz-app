@@ -1,0 +1,29 @@
+.statistic{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: center;
+}
+
+.value{
+    display: flex;
+    height: 180px;
+    width: 180px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 90px;
+
+    font-size: 4rem;
+    font-weight: 700;
+    text-shadow: 0px 0px 20px #000000;
+    
+    background-image: url("https://img2.gratispng.com/20180412/ehw/kisspng-football-player-handball-5acf60675ba751.7146747715235400713754.jpg");
+    background-size: cover;
+}
+
+.text{
+    color: #ddd;
+    font-size: 1.7rem;
+    font-weight: 200;
+}

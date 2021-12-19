@@ -1,4 +1,6 @@
 import { useRouter } from "next/router"
+import MyButton from "../components/MyButton"
+import Statistic from "../components/Statistic"
 import styles from '../styles/Result.module.css'
 
 export default function Result(){
@@ -11,9 +13,12 @@ export default function Result(){
     return(
         <div className={styles.container}>
             <h1>Resultado Final</h1>
-            <div>Total - {total}</div>
-            <div>Corretas - {corrects}</div>
-            <div>Porcentagem - {percentual}%</div>
+            <div className={styles.containerStatics}>
+                <Statistic text="Perguntas" value={total} />
+                <Statistic text="Corretas" value={corrects} />
+                <Statistic  text="Porcentagem" value={`${percentual}%`}/>
+            </div>
+            <MyButton url="/" text="Jogar Novamente"/>
         </div>
     )
 }
