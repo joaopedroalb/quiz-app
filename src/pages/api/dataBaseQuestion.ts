@@ -38,6 +38,24 @@ const questions: QuestionModel[] =[
         AnswerModel.wrongAnswer("135"),
         AnswerModel.correctAnswer("131")
     ]),
+    new QuestionModel(7,"Quem ganhou a bola de ouro de 2018 ?",[
+        AnswerModel.wrongAnswer("Neymar"),
+        AnswerModel.wrongAnswer("Cristiano Ronaldo"),
+        AnswerModel.wrongAnswer("Lionel Messi"),
+        AnswerModel.correctAnswer("Luka Modric")
+    ]),
+    new QuestionModel(8,"Messi em 2019 foi eleito melhor do mundo pela sexta vez. Quem mais disputou o prêmio ?",[
+        AnswerModel.wrongAnswer("Salah e Mané"),
+        AnswerModel.wrongAnswer("Van Dijk e Mané"),
+        AnswerModel.wrongAnswer("Van Dijk e Salah"),
+        AnswerModel.correctAnswer("Cristiano Ronaldo e Van Dijk")
+    ]),
+    new QuestionModel(9,"Qual desses jogadores NÃO jogou com Kevin De Bruyne?",[
+        AnswerModel.wrongAnswer("Vincent Kompany"),
+        AnswerModel.wrongAnswer("Mohammed Salah"),
+        AnswerModel.wrongAnswer("Thibaut Courtois"),
+        AnswerModel.correctAnswer("Mario Balotelli")
+    ]),
 ]
 
 export default questions
