@@ -1,14 +1,19 @@
 import { useRouter } from "next/router"
+import { useContext } from "react"
 import MyButton from "../components/MyButton"
 import Roubo from "../components/Roubo"
 import Statistic from "../components/Statistic"
+import { QuizContext } from "../context/quizContext"
 import styles from '../styles/Result.module.css'
 
 export default function Result(){
     const router = useRouter()
 
+    const {correctQuestion} = useContext(QuizContext)
+ 
     const total = router.query.total != undefined ? +router.query.total:0
-    const corrects = router.query.corrects != undefined ? +router.query.corrects:0
+    const corrects = correctQuestion
+    console.log(corrects)
     const percentual = Math.round((corrects/total)*100)
 
     const text = () =>{

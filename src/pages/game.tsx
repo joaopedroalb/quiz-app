@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { QuizContext } from '../context/quizContext'
 import MyButton from '../components/MyButton'
 import styles from "../styles/Game.module.css"
+import { resolve } from 'path'
 
 const BASE_URL = "/api"
 
@@ -13,11 +14,13 @@ export default function Game(){
     
   const router = useRouter()
 
+  const {setCorrectQuestion,correctQuestion} = useContext(QuizContext)
+ 
   const {started,numberQuestion} = useContext(QuizContext)
 
   const [question,setQuestion] = useState<QuestionModel>()
-  const [correctQuestions,setCorrectQuestions] = useState<number>(0)
   const [idList,setIdList] = useState<number[]>([])
+  const [isPlay,setIsPlay] = useState<boolean>(true)
 
   async function loadIdsQuestion(){
     const resp = await fetch(`${BASE_URL}/quiz`)
@@ -35,11 +38,14 @@ export default function Game(){
     const resp = await fetch(`${BASE_URL}/questions/${id}`)
     const questionJson = await resp.json();
     const newQuestion = QuestionModel.createByObject(questionJson);
+    setIsPlay(true);
     setQuestion(newQuestion)
+    
 
   }
 
   useEffect(()=>{
+    setCorrectQuestion(0)
     loadIdsQuestion();
   },[])
 
@@ -48,11 +54,17 @@ export default function Game(){
       
   },[idList])
   
-  function answeredQuestion(questionAnswered:QuestionModel){
-    setQuestion(questionAnswered)
+  async function answeredQuestion(questionAnswered:QuestionModel){
     const correct = questionAnswered.isCorrect
-    setCorrectQuestions(correctQuestions+(correct?1:0));
+    
+    setIsPlay(false)
+    setCorrectQuestion(correctQuestion+(correct?1:0))
+    console.log(questionAnswered.isCorrect);
+    console.log(correctQuestion+(correct?1:0))
+    
     //task delay para passar a pergunta depois de respondida e o usuario ver a certa caso tenha errado
+    
+    setQuestion(questionAnswered)
     setTimeout(()=>nextStep(),2000)
   }
 
@@ -78,7 +90,6 @@ export default function Game(){
       pathname:"/result",
       query:{
         total:idList.length,
-        corrects: correctQuestions
       }
     })
   }
@@ -89,6 +100,7 @@ export default function Game(){
         last={idNextQuestion() === undefined}
         answeredQuestion={answeredQuestion}
         nextStep={nextStep}
+        isPlay={isPlay}
         />
     ):(<div></div>)):(
     

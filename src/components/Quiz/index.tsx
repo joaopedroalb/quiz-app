@@ -4,6 +4,7 @@ import Question from "../Question"
 import MyButton from "../MyButton"
 
 interface QuizProps{
+    isPlay:boolean
     question:QuestionModel
     last:boolean
     answeredQuestion:(question:QuestionModel) => void
@@ -25,6 +26,7 @@ export default function Quiz(props:QuizProps){
                 value={props.question}
                 onResponse={onResponse}
                 timeOver={props.nextStep}
+                isPlay={props.isPlay}
             />
         )
     }

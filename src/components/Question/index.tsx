@@ -5,6 +5,7 @@ import Timer from "../Timer";
 import styles from './index.module.css'
 
 interface QuestionProps{
+    isPlay: boolean
     value: QuestionModel
     onResponse:(index:number)=>void
     timeOver:()=>void
@@ -33,7 +34,7 @@ export default function Question(props:QuestionProps){
     }
     return(
         <div className={styles.questionContainer}>
-            <Timer duration={30} timeOver={props.timeOver} key={question.id}/>
+            <Timer duration={30} timeOver={props.timeOver} key={question.id} isPlay={props.isPlay}/>
             <Header text={question.header}/>
             {renderAnswers()}
         </div>
