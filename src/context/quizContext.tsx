@@ -13,7 +13,7 @@ type QuizContextProviderProps = {
     children:ReactNode
 }
 
-export default function WeatherProvider({children}:QuizContextProviderProps){
+export default function QuizProvider({children}:QuizContextProviderProps){
 
     const [numberQuestion,setNumberQuestion] = useState(1);
     const [started,setStarted] = useState(false);
