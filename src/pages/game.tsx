@@ -53,7 +53,7 @@ export default function Game(){
     const correct = questionAnswered.isCorrect
     setCorrectQuestions(correctQuestions+(correct?1:0));
     //task delay para passar a pergunta depois de respondida e o usuario ver a certa caso tenha errado
-    setTimeout(()=>nextStep(),1500)
+    setTimeout(()=>nextStep(),2000)
   }
 
   function idNextQuestion(){

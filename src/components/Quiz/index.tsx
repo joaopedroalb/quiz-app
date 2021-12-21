@@ -33,10 +33,10 @@ export default function Quiz(props:QuizProps){
         <div className={styles.quiz}>
             {props.question?renderQuestion():false}
 
-            <MyButton 
+            {/* <MyButton 
                 onClick={props.nextStep}
                 text={props.last?"Finalizar":"Próximo"}
-            />
+            /> */}
         </div>
     )
 }
