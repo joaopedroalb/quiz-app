@@ -1,13 +1,19 @@
 import type { NextPage } from 'next'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router' 
 import MyButton from '../components/MyButton'
 import styles from '../styles/Home.module.css'
 import DropdownQuestion from '../components/DropdownQuestion'
+import { QuizContext } from '../context/quizContext'
 
 
 const Home: NextPage = () => {
-  const router = useRouter()
+  const {setNumberQuestion,setStarted} = useContext(QuizContext)
+
+  useEffect(()=>{
+    setNumberQuestion(1);
+    setStarted(false);
+  },[])
   
   return(
     <div className={styles.container}>
@@ -17,7 +23,7 @@ const Home: NextPage = () => {
       </header>
       <div className={styles.inputContainer}>
         <DropdownQuestion/>
-        <MyButton url='/game' text='Jogar' />
+        <MyButton url='/game' text='Jogar' onClick={()=>setStarted(true)}/>
       </div>
     </div>
   )

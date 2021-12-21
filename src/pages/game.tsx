@@ -1,14 +1,19 @@
 import type { NextPage } from 'next'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import QuestionModel from '../model/Question'
 import Quiz from '../components/Quiz'
 import { useRouter } from 'next/router' 
+import { QuizContext } from '../context/quizContext'
+import MyButton from '../components/MyButton'
+import styles from "../styles/Game.module.css"
 
 const BASE_URL = "/api"
 
 export default function Game(){
     
   const router = useRouter()
+
+  const {started} = useContext(QuizContext)
 
   const [question,setQuestion] = useState<QuestionModel>()
   const [correctQuestions,setCorrectQuestions] = useState<number>(0)
@@ -71,12 +76,17 @@ export default function Game(){
     })
   }
 
-    return question ?(
+    return started ? (question ?(
         <Quiz 
         question={question}
         last={idNextQuestion() === undefined}
         answeredQuestion={answeredQuestion}
         nextStep={nextStep}
         />
-    ):(<div></div>)
+    ):(<div></div>)):(
+    
+    <div className={styles.container}>
+      <h1>Escolha quantas perguntas você deseja responder antes</h1>
+      <MyButton url='/' text='Home' />
+    </div>)
 }
