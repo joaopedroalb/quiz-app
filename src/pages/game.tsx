@@ -13,7 +13,7 @@ export default function Game(){
     
   const router = useRouter()
 
-  const {started} = useContext(QuizContext)
+  const {started,numberQuestion} = useContext(QuizContext)
 
   const [question,setQuestion] = useState<QuestionModel>()
   const [correctQuestions,setCorrectQuestions] = useState<number>(0)
@@ -21,7 +21,12 @@ export default function Game(){
 
   async function loadIdsQuestion(){
     const resp = await fetch(`${BASE_URL}/quiz`)
-    const ids = await resp.json()
+    const idsAux = await resp.json()
+    
+    const ids:number[] =[]
+    for(let i = 0; i<numberQuestion;i++){
+      ids.push(idsAux[i])
+    }
     console.log(ids)
     setIdList(ids)
   }
@@ -47,6 +52,8 @@ export default function Game(){
     setQuestion(questionAnswered)
     const correct = questionAnswered.isCorrect
     setCorrectQuestions(correctQuestions+(correct?1:0));
+    //task delay para passar a pergunta depois de respondida e o usuario ver a certa caso tenha errado
+    setTimeout(()=>nextStep(),1500)
   }
 
   function idNextQuestion(){
