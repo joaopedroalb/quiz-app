@@ -7,8 +7,8 @@ import { useRouter } from 'next/router'
 const BASE_URL = "/api"
 
 export default function Game(){
-
-    const router = useRouter()
+    
+  const router = useRouter()
 
   const [question,setQuestion] = useState<QuestionModel>()
   const [correctQuestions,setCorrectQuestions] = useState<number>(0)
