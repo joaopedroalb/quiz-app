@@ -56,6 +56,12 @@ const questions: QuestionModel[] =[
         AnswerModel.wrongAnswer("Thibaut Courtois"),
         AnswerModel.correctAnswer("Mario Balotelli")
     ]),
+    new QuestionModel(10,"Qual Time que mais ganhou Copa do Brasil?",[
+        AnswerModel.wrongAnswer("Grêmio"),
+        AnswerModel.wrongAnswer("Atlético Mineiro"),
+        AnswerModel.wrongAnswer("Flamengo"),
+        AnswerModel.correctAnswer("Cruzeiro")
+    ]),
 ]
 
 export default questions
