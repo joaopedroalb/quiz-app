@@ -3,7 +3,11 @@ import type { AppProps } from 'next/app'
 import QuizProvider from '../context/quizContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <QuizProvider>
+      <Component {...pageProps} />
+    </QuizProvider>
+  )
 }
 
 export default MyApp
